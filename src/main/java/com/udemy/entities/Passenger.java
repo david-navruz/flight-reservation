@@ -3,7 +3,7 @@ package com.udemy.entities;
 import javax.persistence.Entity;
 
 @Entity
-public class Passenger {
+public class Passenger extends AbstractEntity {
 
     private String firstName;
     private String lastName;
@@ -52,14 +52,5 @@ public class Passenger {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Passenger{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
+
 }
