@@ -1,5 +1,7 @@
 package com.udemy.entities;
 
+import com.udemy.entities.AbstractEntity;
+
 import javax.persistence.Entity;
 
 @Entity
