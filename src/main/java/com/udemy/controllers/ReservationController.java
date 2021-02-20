@@ -5,6 +5,8 @@ import com.udemy.entities.Reservation;
 import com.udemy.flightreservation.dto.ReservationRequest;
 import com.udemy.repositories.FlightRepository;
 import com.udemy.services.ReservationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,17 +24,22 @@ public class ReservationController {
     @Autowired
     ReservationService reservationService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReservationController.class);
+
 
     @RequestMapping(value = "/showCompleteReservation", method = {RequestMethod.GET, RequestMethod.POST})
     public String showCompleteReservation(@RequestParam("flightId") Long flightId, ModelMap modelMap){
+        LOGGER.info("showCompleteReservation() invoked with the Flight Id: " + flightId);
         Flight flight = flightRepository.findById(flightId).get();
         modelMap.addAttribute("flight", flight);
+        LOGGER.info("Flight is:" + flight);
         return "completeReservation";
     }
 
 
     @RequestMapping(value = "/completeReservation", method = {RequestMethod.GET, RequestMethod.POST})
     public String completeReservation(ReservationRequest reservationRequest, ModelMap modelMap) {
+        LOGGER.info("completeReservation()  " + reservationRequest);
         // creating the reservation object with the reservation request
         Reservation reservation = reservationService.bookFlight(reservationRequest);
         modelMap.addAttribute("msg", "Reservation created successfully. Id is " + reservation.getId());

@@ -6,7 +6,6 @@ import java.util.Set;
 @Entity
 public class User extends AbstractEntity {
 
-
     private String firstName;
     private String lastName;
     private String email;
